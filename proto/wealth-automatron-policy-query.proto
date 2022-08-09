@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package wealth_automatron_policy_query;
+
+option go_package = "./";
+
+service WealthAutomatronPolicyQueryService {
+  rpc FindPolicy(FindPolicyRequest) returns (FindPolicyResponse) {}
+  rpc FindAllPolicies(FindAllPoliciesRequest)
+      returns (FindAllPoliciesResponse) {}
+}
+
+message Provider {
+  string network = 1;
+  string networkNodeEndpoint = 2;
+}
+
+message Wallet {
+  string key = 1;
+  Provider provider = 2;
+}
+
+message Fund {
+  string address = 1;
+  Wallet wallet = 2;
+}
+
+message Policy {
+  string id = 1;
+  string name = 2;
+  bool isActive = 3;
+  Fund fund = 4;
+}
+
+message FindAllPoliciesResponseData {
+  repeated Policy policies = 3;
+  int32 total = 4;
+  int32 count = 5;
+  int32 page = 6;
+}
+
+// FindAllPolicies
+
+message FindAllPoliciesRequest { int32 page = 1; }
+
+message FindAllPoliciesResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  FindAllPoliciesResponseData data = 3;
+}
+
+// FindPolicy
+
+message FindPolicyRequest { string id = 1; }
+
+message FindPolicyResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  Policy data = 3;
+}

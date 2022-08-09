@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package wealth_automatron_rules_engine_command;
+
+option go_package = "./";
+
+service WealthAutomatronRulesEngineCommandService {
+  rpc AddRules(AddRulesRequest) returns (AddRulesResponse) {}
+  rpc RemoveRules(RemoveRulesRequest) returns (RemoveRulesResponse) {}
+}
+
+// AddRules
+
+message AddRulesRequest {
+  string id = 1;
+}
+
+message AddRulesResponse {
+  int32 status = 1;
+  repeated string error = 2;
+}
+
+// RemoveRules
+
+message RemoveRulesRequest {
+  string id = 1;
+}
+
+message RemoveRulesResponse {
+  int32 status = 1;
+  repeated string error = 2;
+}

@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package wealth_automatron_policy_command;
+
+option go_package = "./";
+
+service WealthAutomatronPolicyCommandService {
+  rpc CreatePolicy(CreatePolicyRequest) returns (CreatePolicyResponse) {}
+  rpc DeletePolicy(DeletePolicyRequest) returns (DeletePolicyResponse) {}
+}
+
+// CreatePolicy
+
+message ProviderRequest {
+  string network = 1;
+  string networkNodeEndpoint = 2;
+}
+
+message WalletRequest {
+  string key = 1;
+  ProviderRequest provider = 2;
+}
+
+message FundRequest {
+  string address = 1;
+  WalletRequest wallet = 2;
+}
+
+message CreatePolicyRequest {
+  string name = 1;
+  FundRequest fund = 2;
+}
+
+message CreatePolicyResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  string data = 3;
+}
+
+// DeletePolicy
+
+message DeletePolicyRequest { string id = 1; }
+
+message DeletePolicyResponse {
+  int32 status = 1;
+  repeated string error = 2;
+}
