@@ -25,11 +25,43 @@ message Fund {
   Wallet wallet = 2;
 }
 
+message Dictionary {
+  map<string, string> pairs = 1;
+}
+
+enum AssetType {
+  CRYPTO_TOKEN = 0;
+  LIQUIDITY_POSITION = 1;
+  DEBT_POSITION = 2;
+}
+
+enum WatchType {
+  POSITION = 0;
+  POOL = 1;
+  TOKEN_PAIR = 2;
+  TOKEN = 3;
+  ENDPOINT = 4;
+}
+
+message Asset {
+  string identifier = 1;
+  AssetType type = 2;
+}
+
+message Watch {
+  string name = 1;
+  WatchType type = 2;
+  Dictionary params = 3;
+  repeated Asset assets = 4;
+  string schedule = 5;
+}
+
 message Policy {
   string id = 1;
   string name = 2;
   bool isActive = 3;
   Fund fund = 4;
+  Watch watch = 5;
 }
 
 message FindAllPoliciesResponseData {
