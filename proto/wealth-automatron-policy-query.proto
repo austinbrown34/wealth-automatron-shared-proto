@@ -61,7 +61,7 @@ message Policy {
   string name = 2;
   bool isActive = 3;
   Fund fund = 4;
-  Watch watch = 5;
+  repeated Watch watches = 5;
 }
 
 message FindAllPoliciesResponseData {
