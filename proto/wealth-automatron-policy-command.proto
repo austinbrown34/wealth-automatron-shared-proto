@@ -26,10 +26,6 @@ message FundRequest {
   WalletRequest wallet = 2;
 }
 
-message Dictionary {
-  map<string, string> pairs = 1;
-}
-
 enum AssetType {
   CRYPTO_TOKEN = 0;
   LIQUIDITY_POSITION = 1;
@@ -52,7 +48,7 @@ message AssetRequest {
 message WatchRequest {
   string name = 1;
   WatchType type = 2;
-  Dictionary params = 3;
+  map<string, any> params = 3;
   repeated AssetRequest assets = 4;
   string schedule = 5;
 }
