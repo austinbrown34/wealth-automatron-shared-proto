@@ -84,7 +84,7 @@ message Action {
 message Fetch {
   string identifier = 1;
   FetchType type = 2;
-  google.protobuf.Value params = 3;
+  map<string, google.protobuf.Value> params = 3;
 }
 
 
