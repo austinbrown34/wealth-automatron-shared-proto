@@ -67,59 +67,29 @@ message Asset {
   AssetType type = 2;
 }
 
-message Struct {
-  // Unordered map of dynamically typed values.
-  map<string, MyValue> fields = 1;
-}
-
-
-message ListValue {
-  // Repeated field of dynamically typed values.
-  repeated MyValue values = 1;
-}
-
-enum NullValue {
-  // Null value.
-  NULL_VALUE = 0;
-}
-
-message MyValue {
-  oneof kind {
-    int32 int_value = 1;
-    string string_value = 2;
-    bool bool_value = 3;
-    float float_value = 4;
-    double double_value = 5;
-    ListValue list_value = 6;
-    Struct struct_value = 7;
-    NullValue null_value = 8;
-
-  }
-}
-
 message Watch {
   string name = 1;
   WatchType type = 2;
-  map<string, MyValue> params = 3;
+  map<string, bytes> params = 3;
   repeated Asset assets = 4;
   string schedule = 5;
 }
 
 message Action {
   ActionType type = 1;
-  map<string, MyValue> params = 2;
+  map<string, bytes> params = 2;
 }
 
 message Fetch {
   string identifier = 1;
   FetchType type = 2;
-  map<string, MyValue> params = 3;
+  map<string, bytes> params = 3;
 }
 
 
 message Rule {
   string name = 1;
-  map<string, MyValue> conditions = 2;
+  map<string, bytes> conditions = 2;
   repeated Action actions = 3;
   repeated Fetch fetches = 4;
 }
