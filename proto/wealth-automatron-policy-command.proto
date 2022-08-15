@@ -143,26 +143,26 @@ message AssetRequest {
 message WatchRequest {
   string name = 1;
   WatchType type = 2;
-  Struct params = 3;
+  map<string, Struct> params = 3;
   repeated AssetRequest assets = 4;
   string schedule = 5;
 }
 
 message ActionRequest {
   ActionType type = 1;
-  Struct params = 2;
+  map<string, Struct> params = 2;
 }
 
 message FetchRequest {
   string identifier = 1;
   FetchType type = 2;
-  Struct params = 3;
+  map<string, Struct> params = 3;
 }
 
 
 message RuleRequest {
   string name = 1;
-  Struct conditions = 2;
+  map<string, Struct> conditions = 2;
   repeated ActionRequest actions = 3;
   repeated FetchRequest fetches = 4;
 }
