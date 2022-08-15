@@ -91,7 +91,7 @@ message FetchRequest {
 
 message RuleRequest {
   string name = 1;
-  map<string,  google.protobuf.Value> conditions = 2;
+  map<string,  google.protobuf.Struct> conditions = 2;
   repeated ActionRequest actions = 3;
   repeated FetchRequest fetches = 4;
 }
