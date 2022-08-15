@@ -1,5 +1,5 @@
 syntax = "proto3";
-import "google/protobuf/struct.proto";
+import "google/protobuf/any.proto";
 
 package wealth_automatron_policy_query;
 
@@ -70,26 +70,26 @@ message Asset {
 message Watch {
   string name = 1;
   WatchType type = 2;
-  google.protobuf.Struct params = 3;
+  google.protobuf.Any params = 3;
   repeated Asset assets = 4;
   string schedule = 5;
 }
 
 message Action {
   ActionType type = 2;
-  google.protobuf.Struct params = 3;
+  google.protobuf.Any params = 3;
 }
 
 message Fetch {
   string identifier = 1;
   FetchType type = 2;
-  google.protobuf.Struct params = 3;
+  google.protobuf.Any params = 3;
 }
 
 
 message Rule {
   string name = 1;
-  google.protobuf.Struct conditions = 2;
+  google.protobuf.Any conditions = 2;
   repeated Action actions = 3;
   repeated Fetch fetches = 4;
 }
