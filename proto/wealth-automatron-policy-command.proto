@@ -4,17 +4,6 @@ package wealth_automatron_policy_command;
 
 import "google/protobuf/struct.proto";
 
-message ExampleMessage {
-  google.protobuf.Value anything = 1;
-}
-
-// import "google/protobuf/struct.proto";
-
-message Any {
-  string type_url = 1;
-  bytes value = 2;
-}
-
 option go_package = "./";
 
 service WealthAutomatronPolicyCommandService {
@@ -100,84 +89,9 @@ message FetchRequest {
 }
 
 
-// interface ConditionProperties {
-//   fact: string;
-//   operator: string;
-//   value: { fact: string } | any;
-//   path?: string;
-//   priority?: number;
-//   params?: Record<string, any>;
-// }
-
-// type NestedCondition = ConditionProperties | TopLevelCondition;
-// type AllConditions = { all: NestedCondition[] };
-// type AnyConditions = { any: NestedCondition[] };
-// export type TopLevelCondition = AllConditions | AnyConditions;
-
-
-
-
-
-
-
-message FactRequest {
-  string fact = 1;
-}
-
-
-message ValueRequest {
-  oneof value_request {
-    Any any_value = 1;
-    FactRequest fact_value = 2;
-  }
-}
-
-
-
-
-
-message ConditionProperties {
-  string fact = 1;
-  string operator = 2;
-  ValueRequest value = 3;
-  string path = 4;
-  int32 priority = 5;
-  map<string, Any> params = 6;
-}
-
-
-
-message AnyCondition {
-  repeated google.protobuf.Value any = 1;
-}
-
-message AllCondition {
-  repeated google.protobuf.Value all = 1;
-}
-
-
-// message NestedCondition {
-//   oneof nesty {
-//     TopLevelCondition top = 1;
-//     ConditionProperties cond = 2;
-//   }
-// }
-
-
-
-
-
-message TopLevelCondition {
-  oneof condition {
-    AllCondition all = 1;
-    AnyCondition any = 2;
-  }
-}
-
-
 message RuleRequest {
   string name = 1;
-  TopLevelCondition conditions = 2;
+  map<string,  google.protobuf.Value> conditions = 2;
   repeated ActionRequest actions = 3;
   repeated FetchRequest fetches = 4;
 }

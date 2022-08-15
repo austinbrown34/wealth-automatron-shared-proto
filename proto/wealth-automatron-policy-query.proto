@@ -2,10 +2,7 @@ syntax = "proto3";
 
 package wealth_automatron_policy_query;
 
-message Any {
-  string type_url = 1;
-  bytes value = 2;
-}
+import "google/protobuf/struct.proto";
 
 option go_package = "./";
 
@@ -93,7 +90,7 @@ message Fetch {
 
 message Rule {
   string name = 1;
-  map<string,  Any> conditions = 2;
+  map<string,  google.protobuf.Value> conditions = 2;
   repeated Action actions = 3;
   repeated Fetch fetches = 4;
 }
