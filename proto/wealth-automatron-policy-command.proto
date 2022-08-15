@@ -2,6 +2,12 @@ syntax = "proto3";
 
 package wealth_automatron_policy_command;
 
+import "google/protobuf/struct.proto";
+
+message ExampleMessage {
+  google.protobuf.Value anything = 1;
+}
+
 // import "google/protobuf/struct.proto";
 
 message Any {
