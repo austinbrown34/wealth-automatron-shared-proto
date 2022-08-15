@@ -1,8 +1,11 @@
 syntax = "proto3";
 
-import "google/protobuf/any.proto";
-
 package wealth_automatron_policy_command;
+
+message Any {
+  string type_url = 1;
+  bytes value = 2;
+}
 
 option go_package = "./";
 
@@ -79,19 +82,19 @@ message WatchRequest {
 
 message ActionRequest {
   AssetType type = 2;
-  map<string, google.protobuf.Any> params = 3;
+  map<string, Any> params = 3;
 }
 
 message FetchRequest {
   string identifier = 1;
   FetchType type = 2;
-  map<string, google.protobuf.Any> params = 3;
+  map<string, Any> params = 3;
 }
 
 
 message RuleRequest {
   string name = 1;
-  map<string,  google.protobuf.Any> conditions = 2;
+  map<string,  Any> conditions = 2;
   repeated ActionRequest actions = 3;
   repeated FetchRequest fetches = 4;
 }
