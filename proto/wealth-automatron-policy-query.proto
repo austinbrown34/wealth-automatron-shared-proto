@@ -90,7 +90,7 @@ message Fetch {
 
 message Rule {
   string name = 1;
-  google.protobuf.Value conditions = 2;
+  map<string, google.protobuf.Value> conditions = 2;
   repeated Action actions = 3;
   repeated Fetch fetches = 4;
 }
