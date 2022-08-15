@@ -146,37 +146,22 @@ message ConditionProperties {
 }
 
 
-message Outer {                  // Level 0
-  message MiddleAA {  // Level 1
-    message Inner {   // Level 2
-      int64 ival = 1;
-      bool  booly = 2;
-    }
-  }
-  message MiddleBB {  // Level 1
-    message Inner {   // Level 2
-      int32 ival = 1;
-      bool  booly = 2;
-    }
-  }
-}
-
 
 message AnyCondition {
-  repeated NestedCondition any = 1;
+  repeated google.protobuf.Value any = 1;
 }
 
 message AllCondition {
-  repeated NestedCondition all = 1;
+  repeated google.protobuf.Value all = 1;
 }
 
 
-message NestedCondition {
-  oneof nesty {
-    TopLevelCondition top = 1;
-    ConditionProperties cond = 2;
-  }
-}
+// message NestedCondition {
+//   oneof nesty {
+//     TopLevelCondition top = 1;
+//     ConditionProperties cond = 2;
+//   }
+// }
 
 
 
