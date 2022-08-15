@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package wealth_automatron_policy_command;
 
+// import "google/protobuf/struct.proto";
+
 message Any {
   string type_url = 1;
   bytes value = 2;
@@ -92,9 +94,82 @@ message FetchRequest {
 }
 
 
+// interface ConditionProperties {
+//   fact: string;
+//   operator: string;
+//   value: { fact: string } | any;
+//   path?: string;
+//   priority?: number;
+//   params?: Record<string, any>;
+// }
+
+// type NestedCondition = ConditionProperties | TopLevelCondition;
+// type AllConditions = { all: NestedCondition[] };
+// type AnyConditions = { any: NestedCondition[] };
+// export type TopLevelCondition = AllConditions | AnyConditions;
+
+
+
+
+
+
+
+message FactRequest {
+  string fact = 1;
+}
+
+
+message ValueRequest {
+  oneof value_request {
+    Any any_value = 1;
+    FactRequest fact_value = 2;
+  }
+}
+
+
+
+
+
+message ConditionProperties {
+  string fact = 1;
+  string operator = 2;
+  ValueRequest value = 3;
+  string path = 4;
+  int32 priority = 5;
+  map<string, Any> params = 6;
+}
+
+message AnyCondition {
+  repeated NestedCondition any = 1;
+}
+
+message AllCondition {
+  repeated NestedCondition all = 1;
+}
+
+
+message NestedCondition {
+  oneof nesty {
+    TopLevelCondition top = 1;
+    ConditionProperties cond = 2;
+  }
+}
+
+
+
+
+
+message TopLevelCondition {
+  oneof condition {
+    AllCondition all = 1;
+    AnyCondition any = 2;
+  }
+}
+
+
 message RuleRequest {
   string name = 1;
-  map<string,  Any> conditions = 2;
+  TopLevelCondition conditions = 2;
   repeated ActionRequest actions = 3;
   repeated FetchRequest fetches = 4;
 }
