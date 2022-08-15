@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/any.proto";
+
 package wealth_automatron_policy_command;
 
 option go_package = "./";
@@ -40,6 +42,28 @@ enum WatchType {
   ENDPOINT = 4;
 }
 
+enum ActionType {
+  CREATE_LIQUIDITY_POSITION = 0;
+  REMOVE_LIQUIDITY_FROM_POSITION = 1;
+  ADD_LIQUIDITY_TO_POSITION = 2;
+  PURGE_LIQUIDITY_POSITION = 3;
+  SUPPLY_ASSET_LIQUIDITY = 4;
+  STAKE_ASSET = 5;
+  BORROW_AGAINST_ASSET = 6;
+  REPAY_ASSET_LOAN = 7;
+  SWAP_ASSETS = 8;
+  MOVE_ASSET = 9;
+  UPDATE_WATCH_ASSETS = 10;
+  UPDATE_WATCH_PARAMS = 11;
+  UPDATE_WATCH_SCHEDULE = 12;
+  REMOVE_WATCH = 13;
+}
+
+enum FetchType {
+  BOLLINGER = 0;
+  FETCH_ENDPOINT = 1;
+}
+
 message AssetRequest {
   string identifier = 1;
   AssetType type = 2;
@@ -53,12 +77,32 @@ message WatchRequest {
   string schedule = 5;
 }
 
+message ActionRequest {
+  AssetType type = 2;
+  map<string, google.protobuf.Any> params = 3;
+}
+
+message FetchRequest {
+  string identifier = 1;
+  FetchType type = 2;
+  map<string, google.protobuf.Any> params = 3;
+}
+
+
+message RuleRequest {
+  string name = 1;
+  map<string,  google.protobuf.Any> conditions = 2;
+  repeated ActionRequest actions = 3;
+  repeated FetchRequest fetches = 4;
+}
+
 
 
 message CreatePolicyRequest {
   string name = 1;
   FundRequest fund = 2;
   repeated WatchRequest watches = 3;
+  repeated RuleRequest rules = 4;
 }
 
 message CreatePolicyResponse {
