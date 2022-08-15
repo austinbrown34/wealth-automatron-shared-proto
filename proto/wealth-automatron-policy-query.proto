@@ -2,6 +2,11 @@ syntax = "proto3";
 
 package wealth_automatron_policy_query;
 
+message Any {
+  string type_url = 1;
+  bytes value = 2;
+}
+
 option go_package = "./";
 
 service WealthAutomatronPolicyQueryService {
@@ -76,19 +81,19 @@ message Watch {
 
 message Action {
   AssetType type = 2;
-  map<string, google.protobuf.Any> params = 3;
+  map<string, Any> params = 3;
 }
 
 message Fetch {
   string identifier = 1;
   FetchType type = 2;
-  map<string, google.protobuf.Any> params = 3;
+  map<string, Any> params = 3;
 }
 
 
 message Rule {
   string name = 1;
-  map<string,  google.protobuf.Any> conditions = 2;
+  map<string,  Any> conditions = 2;
   repeated Action actions = 3;
   repeated Fetch fetches = 4;
 }
