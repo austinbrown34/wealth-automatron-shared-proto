@@ -71,20 +71,20 @@ message Asset {
 message Watch {
   string name = 1;
   WatchType type = 2;
-  map<string, string> params = 3;
+  map<string, google.protobuf.Value> params = 3;
   repeated Asset assets = 4;
   string schedule = 5;
 }
 
 message Action {
   AssetType type = 2;
-  map<string, Any> params = 3;
+  map<string, google.protobuf.Value> params = 3;
 }
 
 message Fetch {
   string identifier = 1;
   FetchType type = 2;
-  map<string, Any> params = 3;
+  map<string, google.protobuf.Value> params = 3;
 }
 
 
