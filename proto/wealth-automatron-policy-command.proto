@@ -73,7 +73,7 @@ message WatchRequest {
   WatchType type = 2;
   map<string, bytes> params = 3;
   repeated AssetRequest assets = 4;
-  string schedule = 5;
+  map<string, bytes> options = 5;
 }
 
 message ActionRequest {
