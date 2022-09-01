@@ -1,0 +1,1 @@
+# wealth-automatron-shared-proto
