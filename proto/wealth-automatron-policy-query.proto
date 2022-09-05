@@ -79,7 +79,8 @@ message Watch {
 
 message Action {
   ActionType type = 1;
-  map<string, bytes> params = 2;
+  int32 priority = 2;
+  map<string, bytes> params = 3;
 }
 
 message Fetch {
