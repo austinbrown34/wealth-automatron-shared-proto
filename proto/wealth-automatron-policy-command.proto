@@ -23,7 +23,8 @@ message WalletRequest {
 
 message FundRequest {
   string address = 1;
-  WalletRequest wallet = 2;
+  string name = 2;
+  WalletRequest wallet = 3;
 }
 
 enum AssetType {
@@ -103,9 +104,10 @@ message RuleRequest {
 
 message CreatePolicyRequest {
   string name = 1;
-  FundRequest fund = 2;
-  repeated WatchRequest watches = 3;
-  repeated RuleRequest rules = 4;
+  string description = 2;
+  FundRequest fund = 3;
+  repeated WatchRequest watches = 4;
+  repeated RuleRequest rules = 5;
 }
 
 message CreatePolicyResponse {
