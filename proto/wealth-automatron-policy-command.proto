@@ -75,9 +75,10 @@ message AssetRequest {
 message WatchRequest {
   string name = 1;
   WatchType type = 2;
-  map<string, bytes> params = 3;
-  repeated AssetRequest assets = 4;
-  map<string, bytes> options = 5;
+  bool isActive = 3;
+  map<string, bytes> params = 4;
+  repeated AssetRequest assets = 5;
+  map<string, bytes> options = 6;
 }
 
 message ActionRequest {
