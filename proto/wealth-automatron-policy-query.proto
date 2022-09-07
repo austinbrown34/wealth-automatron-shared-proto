@@ -74,7 +74,7 @@ message Asset {
 message Watch {
   string name = 1;
   WatchType type = 2;
-  bool isActive = 3;
+  bool active = 3;
   map<string, bytes> params = 4;
   repeated Asset assets = 5;
   map<string, bytes> options = 6;
@@ -95,9 +95,10 @@ message Fetch {
 
 message Rule {
   string name = 1;
-  map<string, bytes> conditions = 2;
-  repeated Action actions = 3;
-  repeated Fetch fetches = 4;
+  bool active = 2;
+  map<string, bytes> conditions = 3;
+  repeated Action actions = 4;
+  repeated Fetch fetches = 5;
 }
 
 message Policy {
@@ -105,7 +106,7 @@ message Policy {
   string name = 2;
   string description = 3;
   bool deleted = 4;
-  bool isActive = 5;
+  bool active = 5;
   Fund fund = 6;
   repeated Watch watches = 7;
   repeated Rule rules = 8;

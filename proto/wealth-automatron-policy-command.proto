@@ -75,7 +75,7 @@ message AssetRequest {
 message WatchRequest {
   string name = 1;
   WatchType type = 2;
-  bool isActive = 3;
+  bool active = 3;
   map<string, bytes> params = 4;
   repeated AssetRequest assets = 5;
   map<string, bytes> options = 6;
@@ -96,9 +96,10 @@ message FetchRequest {
 
 message RuleRequest {
   string name = 1;
-  map<string, bytes> conditions = 2;
-  repeated ActionRequest actions = 3;
-  repeated FetchRequest fetches = 4;
+  bool active = 2;
+  map<string, bytes> conditions = 3;
+  repeated ActionRequest actions = 4;
+  repeated FetchRequest fetches = 5;
 }
 
 
